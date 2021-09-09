@@ -11,11 +11,15 @@ $ npm i
 and finally run:
 ```sh
 nodemon index.js
-
 ```
 or run: 
 ```sh
 npx nodemon index.js
+```
+
+listening: 
+```
+http://localhost:3456/quotes
 ```
 
 # License

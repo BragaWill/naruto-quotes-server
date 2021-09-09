@@ -33,10 +33,6 @@ app.get('/quote/:id', (req, res) => {
   }
 })
 
-app.listen(3456, () => {
-  console.log('API Online')
-})
-
 app.post('/quote', (req, res) => {
   var { id, name, quote } = req.body
   if (name !== '' && !isNaN(id) && quote !== '') {
@@ -60,4 +56,38 @@ app.delete('/quote/:id', (req, res) => {
       res.sendStatus(200)
     }
   }
+})
+
+
+app.put('/quote/:id', (req, res) => {
+  if(isNaN(req.params.id)) {
+    res.sendStatus(400)
+  } else {
+    var id = parseInt(req.params.id)
+    var qt = DB.quotes.find(q => q.id == id)
+
+    if(qt !== undefined) {
+      var {name, quote} = req.body
+
+      if(name !== undefined && isNaN(name)) {
+        DB.quotes[id].name = name
+      }
+      if(quote !== undefined && isNaN(name)) {
+        DB.quotes[id].quote = quote       
+      }
+
+      res.sendStatus(200)
+
+    } else {
+      res.sendStatus(404)
+    }
+  }
+})
+
+app.listen(3456, () => {
+  console.log(`
+  http://localhost:3456/quotes
+  ==============================
+  API online!
+  `)
 })
