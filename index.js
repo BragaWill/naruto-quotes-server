@@ -13,6 +13,26 @@ var DB = { quotes: [] }
 
 DB.quotes = database.Data
 
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/** Rota utilizada no client desenvolvido em react */
+app.get('/random-quote', (req, res) => {
+  var id = getRandomIntInclusive(0,508)
+  if(id === undefined || isNaN(id)){
+    res.sendStatus(400)
+  }
+  var quote = DB.quotes.find(q => q.id === id)
+  if(quote !== undefined) {
+    res.json(quote)
+  } else {
+    res.sendStatus(404)
+  }
+})
+
 
 app.get('/quotes', (req, res) => {
   res.json(DB.quotes)

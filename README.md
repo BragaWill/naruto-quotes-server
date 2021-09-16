@@ -1,5 +1,5 @@
-Quotes Api
-====================
+Naruto Quotes Api
+=========================
 Simple app to generate quotes using Node.js and Express.js
 
 # Running locally
@@ -10,16 +10,16 @@ $ npm i
 
 and finally run:
 ```sh
-nodemon index.js
+$ nodemon index.js
 ```
 or run: 
 ```sh
-npx nodemon index.js
+$ npx nodemon index.js
 ```
 
-listening: 
+To generate random quote, use this route: 
 ```
-http://localhost:3456/quotes
+http://localhost:3456/random-quote
 ```
 
 # License
